@@ -69,3 +69,20 @@ abstract class GetBytes {
     return _.buffer.asUint8List(0, length);
   }
 }
+
+extension GetBytesExtInt on int {
+  Uint8List toInt8Bytes() => GetBytes.fromInt8(this);
+  Uint8List toInt16Bytes() => GetBytes.fromInt16(this);
+  Uint8List toInt32Bytes() => GetBytes.fromInt64(this);
+  Uint8List toInt64Bytes() => GetBytes.fromInt64(this);
+
+  Uint8List toUint8Bytes() => GetBytes.fromUint8(this);
+  Uint8List toUint16Bytes() => GetBytes.fromUint16(this);
+  Uint8List toUint32Bytes() => GetBytes.fromUint32(this);
+  Uint8List toUint64Bytes() => GetBytes.fromUint64(this);
+}
+
+extension GetBytesExtFloat on double {
+  Uint8List toFloat32Bytes() => GetBytes.fromFloat32(this);
+  Uint8List toFloat64Bytes() => GetBytes.fromFloat64(this);
+}
