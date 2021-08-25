@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 abstract class GetBytes {
-  static final _ = ByteData(8);
+  static final _ = ByteData.view(Uint8List(8).buffer);
   static Endian defaultEndian = Endian.little;
   static void setDefaultEndian(Endian endian) {
     GetBytes.defaultEndian = endian;
@@ -59,10 +59,10 @@ abstract class GetBytes {
 
   static void _set(Function f, dynamic value, [Endian? endian]) {
     if (f == _.setInt8 || f == _.setUint8) {
-      f(0, value, endian);
+      f(0, value);
       return;
     }
-    f(0, value, endian, endian ?? GetBytes.defaultEndian);
+    f(0, value, endian ?? GetBytes.defaultEndian);
   }
 
   static Uint8List _get(int length) {
